@@ -1,0 +1,25 @@
+{
+  "note": "Digests resolved with `docker pull` + `docker image inspect` on 2026-10-16. Refresh with: python -m hardlab digests",
+  "images": {
+    "python:latest": {
+      "digest": "sha256:16e7e5fc4e79fe153c818ac9b46595c7addddaad744d49595377836e300ad1c6",
+      "used_by": ["01-naive"],
+      "pinned": false
+    },
+    "python:3.11-slim": {
+      "digest": "sha256:e88e9763f943ec1834f992a4b51e0f24500486803e8bc534e5767af9ea65f6ce",
+      "used_by": ["02-slim-multistage"],
+      "pinned": false
+    },
+    "python:3.11.17-slim-bookworm": {
+      "digest": "sha256:0a310eeecf4e1f5a0743f9a6520c90c88d089c903ca5fd283f501e3a805f5f89",
+      "used_by": ["03-nonroot-hardened", "04-runtime-locked"],
+      "pinned": true
+    },
+    "gcr.io/distroless/python3-debian12:nonroot": {
+      "digest": "sha256:7d1042ce588ab97019fe95c24ffca7bc5a82ccdac572511d5e09bda4435c89c5",
+      "used_by": ["03-nonroot-hardened", "04-runtime-locked"],
+      "pinned": true
+    }
+  }
+}

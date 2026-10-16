@@ -1,0 +1,21 @@
+# Stage 4 runtime lock. The measurement tool derives its `docker run` flags from this file,
+# so the compose file and the flags cannot drift apart.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/04-runtime-locked.Dockerfile
+    image: hardlab/04-runtime-locked:latest
+    ports:
+      - "127.0.0.1:8080:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 64
+    restart: unless-stopped

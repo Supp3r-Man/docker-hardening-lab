@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+# Private interview notes live outside the repo; never commit them
+INTERVIEW_PREP*

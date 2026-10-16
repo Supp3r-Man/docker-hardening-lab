@@ -1,0 +1,475 @@
+{
+  "generated_at": "2026-10-16T13:57:51Z",
+  "docker": {
+    "server_version": "29.8.2",
+    "os": "Docker Desktop",
+    "arch": "x86_64",
+    "cgroup_version": "2",
+    "storage_driver": "overlayfs"
+  },
+  "repeats": 3,
+  "notes": [
+    "Base images were pulled before timing, so builds measure the build, not the network pull.",
+    "Cold = docker build --no-cache. Warm = cache on after changing one line of app/server.py."
+  ],
+  "scan": {
+    "tool": "trivy",
+    "skipped": null,
+    "version": "0.76.0",
+    "db_updated_at": "2026-10-16T01:13:54.947090392Z"
+  },
+  "stages": {
+    "01-naive": {
+      "build": {
+        "cold_s": {
+          "n": 3,
+          "min": 6.81,
+          "median": 7.47,
+          "max": 36.03
+        },
+        "warm_s": {
+          "n": 3,
+          "min": 6.6,
+          "median": 6.83,
+          "max": 7.71
+        },
+        "warm_steps_total": 4,
+        "warm_steps_cached": 1,
+        "dockerfile": "docker/01-naive.Dockerfile",
+        "python": "python"
+      },
+      "image": {
+        "size_bytes": 1639864904,
+        "layers": 10,
+        "user": "",
+        "entrypoint": [],
+        "cmd": [
+          "python",
+          "app/server.py"
+        ],
+        "healthcheck": false,
+        "id": "sha256:8616621a0640231cb28adef247039306337c5bd8e1b2607cd4c3a64668f2b5f7"
+      },
+      "mode": "default",
+      "matrix": {
+        "default": {
+          "uid": 0,
+          "root": true,
+          "caps_effective": [
+            "CHOWN",
+            "DAC_OVERRIDE",
+            "FOWNER",
+            "FSETID",
+            "KILL",
+            "SETGID",
+            "SETUID",
+            "SETPCAP",
+            "NET_BIND_SERVICE",
+            "NET_RAW",
+            "SYS_CHROOT",
+            "MKNOD",
+            "AUDIT_WRITE",
+            "SETFCAP"
+          ],
+          "caps_bounding": [
+            "CHOWN",
+            "DAC_OVERRIDE",
+            "FOWNER",
+            "FSETID",
+            "KILL",
+            "SETGID",
+            "SETUID",
+            "SETPCAP",
+            "NET_BIND_SERVICE",
+            "NET_RAW",
+            "SYS_CHROOT",
+            "MKNOD",
+            "AUDIT_WRITE",
+            "SETFCAP"
+          ],
+          "no_new_privs": false,
+          "write_root": true,
+          "write_app": true,
+          "write_tmp": true,
+          "has_shell": true,
+          "has_pip": true,
+          "memory_limit_bytes": null,
+          "pids_limit": null,
+          "cpu_limit": null
+        },
+        "locked": {
+          "uid": 0,
+          "root": true,
+          "caps_effective": [],
+          "caps_bounding": [],
+          "no_new_privs": true,
+          "write_root": false,
+          "write_app": false,
+          "write_tmp": true,
+          "has_shell": true,
+          "has_pip": true,
+          "memory_limit_bytes": 134217728,
+          "pids_limit": 64,
+          "cpu_limit": 0.5
+        }
+      },
+      "service": {
+        "http_ok": true,
+        "sign_ok": true,
+        "health": "none",
+        "stop_seconds": 0.68,
+        "exit_code": 0
+      },
+      "lint": {
+        "findings": [
+          "deps-before-source",
+          "final-nonroot",
+          "healthcheck",
+          "multi-stage",
+          "no-floating-tag",
+          "pin-digest",
+          "pip-no-cache"
+        ],
+        "required_failed": []
+      },
+      "scan": {
+        "counts": {
+          "CRITICAL": 16,
+          "HIGH": 321,
+          "MEDIUM": 1647,
+          "LOW": 1672,
+          "UNKNOWN": 81
+        },
+        "total": 3737,
+        "fixable": 32
+      }
+    },
+    "02-slim-multistage": {
+      "build": {
+        "cold_s": {
+          "n": 3,
+          "min": 12.4,
+          "median": 13.07,
+          "max": 17.24
+        },
+        "warm_s": {
+          "n": 3,
+          "min": 1.55,
+          "median": 1.63,
+          "max": 1.74
+        },
+        "warm_steps_total": 8,
+        "warm_steps_cached": 6,
+        "dockerfile": "docker/02-slim-multistage.Dockerfile",
+        "python": "python"
+      },
+      "image": {
+        "size_bytes": 224386036,
+        "layers": 7,
+        "user": "",
+        "entrypoint": [],
+        "cmd": [
+          "python",
+          "server.py"
+        ],
+        "healthcheck": false,
+        "id": "sha256:a06420896a3bbdb0872b115c7fafac2b57108deda6b787bbd0457b446b51d626"
+      },
+      "mode": "default",
+      "matrix": {
+        "default": {
+          "uid": 0,
+          "root": true,
+          "caps_effective": [
+            "CHOWN",
+            "DAC_OVERRIDE",
+            "FOWNER",
+            "FSETID",
+            "KILL",
+            "SETGID",
+            "SETUID",
+            "SETPCAP",
+            "NET_BIND_SERVICE",
+            "NET_RAW",
+            "SYS_CHROOT",
+            "MKNOD",
+            "AUDIT_WRITE",
+            "SETFCAP"
+          ],
+          "caps_bounding": [
+            "CHOWN",
+            "DAC_OVERRIDE",
+            "FOWNER",
+            "FSETID",
+            "KILL",
+            "SETGID",
+            "SETUID",
+            "SETPCAP",
+            "NET_BIND_SERVICE",
+            "NET_RAW",
+            "SYS_CHROOT",
+            "MKNOD",
+            "AUDIT_WRITE",
+            "SETFCAP"
+          ],
+          "no_new_privs": false,
+          "write_root": true,
+          "write_app": true,
+          "write_tmp": true,
+          "has_shell": true,
+          "has_pip": true,
+          "memory_limit_bytes": null,
+          "pids_limit": null,
+          "cpu_limit": null
+        },
+        "locked": {
+          "uid": 0,
+          "root": true,
+          "caps_effective": [],
+          "caps_bounding": [],
+          "no_new_privs": true,
+          "write_root": false,
+          "write_app": false,
+          "write_tmp": true,
+          "has_shell": true,
+          "has_pip": true,
+          "memory_limit_bytes": 134217728,
+          "pids_limit": 64,
+          "cpu_limit": 0.5
+        }
+      },
+      "service": {
+        "http_ok": true,
+        "sign_ok": true,
+        "health": "none",
+        "stop_seconds": 0.7,
+        "exit_code": 0
+      },
+      "lint": {
+        "findings": [
+          "final-nonroot",
+          "healthcheck",
+          "pin-digest"
+        ],
+        "required_failed": []
+      },
+      "scan": {
+        "counts": {
+          "CRITICAL": 0,
+          "HIGH": 46,
+          "MEDIUM": 64,
+          "LOW": 62,
+          "UNKNOWN": 3
+        },
+        "total": 175,
+        "fixable": 11
+      }
+    },
+    "03-nonroot-hardened": {
+      "build": {
+        "cold_s": {
+          "n": 3,
+          "min": 6.39,
+          "median": 7.36,
+          "max": 8.44
+        },
+        "warm_s": {
+          "n": 3,
+          "min": 2.48,
+          "median": 2.84,
+          "max": 3.62
+        },
+        "warm_steps_total": 8,
+        "warm_steps_cached": 4,
+        "dockerfile": "docker/03-nonroot-hardened.Dockerfile",
+        "python": "/usr/bin/python3.11"
+      },
+      "image": {
+        "size_bytes": 80534278,
+        "layers": 46,
+        "user": "65532:65532",
+        "entrypoint": [
+          "/usr/bin/python3.11"
+        ],
+        "cmd": [
+          "/app/server.py"
+        ],
+        "healthcheck": true,
+        "id": "sha256:dec5bd70ead3dd60c7ce8291fdcb4660ef1c40c1dce90c9cb92ba36a7dfdc4b5"
+      },
+      "mode": "default",
+      "matrix": {
+        "default": {
+          "uid": 65532,
+          "root": false,
+          "caps_effective": [],
+          "caps_bounding": [
+            "CHOWN",
+            "DAC_OVERRIDE",
+            "FOWNER",
+            "FSETID",
+            "KILL",
+            "SETGID",
+            "SETUID",
+            "SETPCAP",
+            "NET_BIND_SERVICE",
+            "NET_RAW",
+            "SYS_CHROOT",
+            "MKNOD",
+            "AUDIT_WRITE",
+            "SETFCAP"
+          ],
+          "no_new_privs": false,
+          "write_root": false,
+          "write_app": false,
+          "write_tmp": true,
+          "has_shell": false,
+          "has_pip": false,
+          "memory_limit_bytes": null,
+          "pids_limit": null,
+          "cpu_limit": null
+        },
+        "locked": {
+          "uid": 65532,
+          "root": false,
+          "caps_effective": [],
+          "caps_bounding": [],
+          "no_new_privs": true,
+          "write_root": false,
+          "write_app": false,
+          "write_tmp": true,
+          "has_shell": false,
+          "has_pip": false,
+          "memory_limit_bytes": 134217728,
+          "pids_limit": 64,
+          "cpu_limit": 0.5
+        }
+      },
+      "service": {
+        "http_ok": true,
+        "sign_ok": true,
+        "health": "healthy",
+        "stop_seconds": 0.82,
+        "exit_code": 0
+      },
+      "lint": {
+        "findings": [],
+        "required_failed": []
+      },
+      "scan": {
+        "counts": {
+          "CRITICAL": 2,
+          "HIGH": 61,
+          "MEDIUM": 148,
+          "LOW": 77,
+          "UNKNOWN": 3
+        },
+        "total": 291,
+        "fixable": 153
+      }
+    },
+    "04-runtime-locked": {
+      "build": {
+        "cold_s": {
+          "n": 3,
+          "min": 6.94,
+          "median": 7.02,
+          "max": 7.21
+        },
+        "warm_s": {
+          "n": 3,
+          "min": 2.06,
+          "median": 2.07,
+          "max": 2.21
+        },
+        "warm_steps_total": 8,
+        "warm_steps_cached": 6,
+        "dockerfile": "docker/04-runtime-locked.Dockerfile",
+        "python": "/usr/bin/python3.11"
+      },
+      "image": {
+        "size_bytes": 80534527,
+        "layers": 46,
+        "user": "65532:65532",
+        "entrypoint": [
+          "/usr/bin/python3.11"
+        ],
+        "cmd": [
+          "/app/server.py"
+        ],
+        "healthcheck": true,
+        "id": "sha256:c7140b1d197a59bc8f1d092ec10510f7abbd8008399ec1bdb7f7dae183b5ba76"
+      },
+      "mode": "locked",
+      "matrix": {
+        "default": {
+          "uid": 65532,
+          "root": false,
+          "caps_effective": [],
+          "caps_bounding": [
+            "CHOWN",
+            "DAC_OVERRIDE",
+            "FOWNER",
+            "FSETID",
+            "KILL",
+            "SETGID",
+            "SETUID",
+            "SETPCAP",
+            "NET_BIND_SERVICE",
+            "NET_RAW",
+            "SYS_CHROOT",
+            "MKNOD",
+            "AUDIT_WRITE",
+            "SETFCAP"
+          ],
+          "no_new_privs": false,
+          "write_root": false,
+          "write_app": false,
+          "write_tmp": true,
+          "has_shell": false,
+          "has_pip": false,
+          "memory_limit_bytes": null,
+          "pids_limit": null,
+          "cpu_limit": null
+        },
+        "locked": {
+          "uid": 65532,
+          "root": false,
+          "caps_effective": [],
+          "caps_bounding": [],
+          "no_new_privs": true,
+          "write_root": false,
+          "write_app": false,
+          "write_tmp": true,
+          "has_shell": false,
+          "has_pip": false,
+          "memory_limit_bytes": 134217728,
+          "pids_limit": 64,
+          "cpu_limit": 0.5
+        }
+      },
+      "service": {
+        "http_ok": true,
+        "sign_ok": true,
+        "health": "healthy",
+        "stop_seconds": 0.93,
+        "exit_code": 0
+      },
+      "lint": {
+        "findings": [],
+        "required_failed": []
+      },
+      "scan": {
+        "counts": {
+          "CRITICAL": 2,
+          "HIGH": 61,
+          "MEDIUM": 148,
+          "LOW": 77,
+          "UNKNOWN": 3
+        },
+        "total": 291,
+        "fixable": 153
+      }
+    }
+  }
+}
