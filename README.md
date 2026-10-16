@@ -97,7 +97,7 @@ Rules are checked by parsing the files (`python -m hardlab lint`). Stage 1 is th
 Python 3.10 or newer (tested on 3.13). The offline demo and the unit tests need no Docker. `measure` and the integration tests need a running Docker daemon and about 2.5 GB of disk for the base images.
 
 ```bash
-git clone https://github.com/Sup3rMar10/docker-hardening-lab.git
+git clone https://github.com/Supp3r-Man/docker-hardening-lab.git
 cd docker-hardening-lab
 pip install -r requirements.txt
 
